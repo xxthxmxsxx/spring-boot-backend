@@ -24,6 +24,9 @@ public class NoteService {
     }
 
     public Note updateNote(Long id,Note changes){
+        if (!noteRepository.existsById(id)){
+            return null;
+        }
 
         Note updatedNote = noteRepository.findById(id).get();
         if (changes.getTitle() != null){
